@@ -1,0 +1,14 @@
+schema_version: 20180708
+name: amplification-threshold
+version: 0.0.14
+runtime: go
+entrypoint: ./func
+memory: 512
+timeout: 300
+config:
+  THEORETICAL_THRESHOLD: "0.6"
+  THRESHOLD_LIMIT_QUOTA: "0.75"
+triggers:
+- name: amplification-threshold
+  type: http
+  source: /amplification-threshold

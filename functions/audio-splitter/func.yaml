@@ -1,0 +1,14 @@
+schema_version: 20180708
+name: audio-splitter
+version: 0.0.6
+runtime: go
+entrypoint: ./func
+format: http-stream
+memory: 512
+timeout: 300
+build_image: denismakogon/ffmpeg-debian:golang
+run_image: denismakogon/ffmpeg-debian:runtime
+triggers:
+- name: audio-splitter
+  type: http
+  source: /audio-splitter

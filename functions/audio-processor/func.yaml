@@ -1,0 +1,14 @@
+schema_version: 20180708
+name: audio-processor
+version: 0.0.7
+runtime: go
+entrypoint: ./func
+format: http-stream
+memory: 1024
+timeout: 300
+build_image: denismakogon/ffmpeg-debian:golang as build-stage
+run_image: denismakogon/ffmpeg-debian:runtime
+triggers:
+- name: audio-processor
+  type: http
+  source: /audio-processor

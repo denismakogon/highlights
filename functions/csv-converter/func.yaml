@@ -1,0 +1,14 @@
+schema_version: 20180708
+name: csv-converter
+version: 0.0.6
+runtime: go
+entrypoint: ./func
+format: http-stream
+memory: 1500
+timeout: 300
+build_image: denismakogon/ffmpeg-debian:golang as build-stage
+run_image: denismakogon/ffmpeg-debian:runtime
+triggers:
+- name: csv-converter
+  type: http
+  source: /csv-converter

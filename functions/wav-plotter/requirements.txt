@@ -1,0 +1,8 @@
+fdk
+pandas
+boto3
+
+dash==0.28.5
+dash-html-components==0.13.2
+dash-core-components==0.36.0
+dash-table==3.1.2

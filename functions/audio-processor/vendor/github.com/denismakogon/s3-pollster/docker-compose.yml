@@ -1,0 +1,22 @@
+version: '3'
+services:
+  s3:
+    hostname: s3
+    image: minio/minio
+    ports:
+      - "9091:9000"
+    environment:
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=password
+    command: server /data
+  pollster:
+    image: denismakogon/s3-pollster:0.0.1
+    restart: always
+    depends_on:
+      - s3
+    links:
+      - "s3"
+    environment:
+      S3_URL: "s3://admin:password@s3:9000/us-east-1/default-bucket"
+      WEBHOOK_ENDPOINT: "https://5d6b3409.ngrok.io/r/app/route"
+      POLLSTER_BACKOFF: 5
