@@ -52,7 +52,7 @@ Deploy it. Run it
 ```bash
 ./run.sh
 
-cat functions/audio-splitter/payload.json | fn invoke ffmpeg audio-splitter | fn invoke ffmpeg audio-processor | fn invoke ffmpeg amplification-threshold | fn invoke ffmpeg csv-converter | fn invoke ffmpeg timecode-statistics
+cat functions/audio-splitter/payload.json | fn invoke ffmpeg audio-splitter | fn invoke ffmpeg audio-processor | fn invoke ffmpeg amplification-threshold | fn invoke ffmpeg csv-converter | fn invoke ffmpeg peak-frequency-plotter | fn invoke ffmpeg timecode-statistics
 ```
 
 Acknowledgement

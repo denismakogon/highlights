@@ -6,7 +6,7 @@ entrypoint: ./func
 format: http-stream
 memory: 1500
 timeout: 300
-build_image: denismakogon/ffmpeg-debian:golang as build-stage
+build_image: denismakogon/ffmpeg-debian:golang
 run_image: denismakogon/ffmpeg-debian:runtime
 triggers:
 - name: csv-converter

@@ -10,7 +10,11 @@ import logging
 
 from botocore import exceptions
 
-boto3.set_stream_logger('boto3.resources', logging.INFO)
+logging.getLogger('boto3').setLevel(logging.CRITICAL)
+logging.getLogger('botocore').setLevel(logging.CRITICAL)
+logging.getLogger('s3transfer').setLevel(logging.CRITICAL)
+logging.getLogger('urllib3').setLevel(logging.CRITICAL)
+
 TIMECODE = "timecode"
 AMP_PEAK = "amplification_peak_value"
 
@@ -155,7 +159,7 @@ def handler(ctx, data=None, loop=None):
         stat_uuid = body.get("stat_uuid")
         download_s3_file(stat_uuid)
         return from_file("/tmp/{0}.csv".format(
-            stat_uuid), peak, stat_uuid),
+            stat_uuid), peak, stat_uuid)
     return {}
 
 

@@ -45,13 +45,11 @@ func myHandler(ctx context.Context, in io.Reader, out io.Writer) error {
 	}
 
 	threshold, err := ObtainThreshold(ctx, reader, &rq)
+	if err != nil {
+		return err
+	}
 
-	return json.NewEncoder(out).Encode(
-		Threshold{
-			ThresholdValue: *threshold,
-			StatUUID:       rq.StatUUID,
-		},
-	)
+	return json.NewEncoder(out).Encode(threshold)
 }
 
 func withError(ctx context.Context, in io.Reader, out io.Writer) {

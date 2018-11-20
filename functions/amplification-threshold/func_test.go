@@ -22,7 +22,7 @@ func TestAmplificationThreshold(t *testing.T) {
 			t.Fatal(err.Error())
 		}
 		t.Log("threshold: ", *thresholdPtr)
-		if *thresholdPtr <= 0 {
+		if thresholdPtr.ThresholdValue <= 0 {
 			t.Fatal("invalid threshold value, suppose be greater than 0.0")
 		}
 	})

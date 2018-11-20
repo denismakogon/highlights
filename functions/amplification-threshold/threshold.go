@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func ObtainThreshold(ctx context.Context, input io.Reader, rq *Request) (*float64, error) {
+func ObtainThreshold(ctx context.Context, input io.Reader, rq *Request) (*Threshold, error) {
 	defer timeTrack(time.Now(), fmt.Sprintf("threshold-obtain-%v", rq.StatUUID))
 	var buf bytes.Buffer
 	err := runExec(ctx, fmt.Sprintf(awkMax, theoreticalThreshold, upperLimitThresholdQuota),
@@ -23,5 +23,6 @@ func ObtainThreshold(ctx context.Context, input io.Reader, rq *Request) (*float6
 	if err != nil {
 		return nil, err
 	}
-	return &threshold, nil
+
+	return &Threshold{threshold, rq.StatUUID}, nil
 }

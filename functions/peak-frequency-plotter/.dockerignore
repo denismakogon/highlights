@@ -1,3 +1,4 @@
 func.yaml
 .venv
 payload.json
+test.dockerfile

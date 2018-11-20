@@ -6,8 +6,8 @@ entrypoint: ./func
 memory: 512
 timeout: 300
 config:
-  THEORETICAL_THRESHOLD: "0.6"
-  THRESHOLD_LIMIT_QUOTA: "0.75"
+  THEORETICAL_THRESHOLD: "0.5"
+  THRESHOLD_LIMIT_QUOTA: "0.6"
 triggers:
 - name: amplification-threshold
   type: http
