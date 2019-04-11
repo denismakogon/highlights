@@ -1,8 +1,7 @@
-Highlighter demo
-=================
+# Highlighter demo
 
-Purpose
--------
+
+## Purpose
 
 Purpose of the highlighter is to identify potentially "interesting" moments from the video.
 Interesting moment can be anything:
@@ -11,8 +10,7 @@ Interesting moment can be anything:
  - action scene in a movie
  - etc. (your idea?)
 
-Technology stack
-----------------
+## Technology stack
 
 I prefer to stick with tooling and programming languages I've got used to.
 So, for this particular application I use:
@@ -24,39 +22,43 @@ So, for this particular application I use:
  - Python - well, can't go far without one.
  - Minio S3 - I prefer file store to the databases for demos
  - Pandas - the most powerful tool for data processing and pipelines I've ever used so far.
- 
- - Fn Project (and Fn Flow soon) - my favourite one. I <3 serverless.
 
-Serverless
-----------
+ - Fn Project (and Fn Flow soon) - my favorite one. I <3 serverless.
 
-Well, honestly i prefer to stick with server (Fn Project) instead of going to the microservices path.
+## Serverless
+
+Well, honestly i prefer to stick with server (Fn Project) instead of going to the path.
 
 
-Serverless: functions
----------------------
+### Functions
+
 
 For this particular demo I've developed a whole set of functions combined altogether in a pipeline.
 So, we have:
 
- - [audio-splitter](functions/audio-splitter) - a function that extracts an audio stream from the videofile
+ - [audio-splitter](functions/audio-splitter) - a function that extracts an audio stream from the video file
  - [audio-processor](functions/audio-processor) - a function that turns an audio stream onto DFT (discrete Fourier transform) dataset
  - [amplification-threshold](functions/amplification-threshold) - a function that retrieves the amplification threshold based on DFT dataset
  - [csv-converter](functions/csv-converter) - a function that turns DFT dataset into a CSV structure
- - [timecode-statistics](functions/timecode-statistics) - a function that does massive filtering of 
+ - [timecode-statistics](functions/timecode-statistics) - a function that does massive filtering of
     the CSV-formatted DFT dataset and does some "magic" in order to identify the highlights
 
-Deploy it. Run it
------------------
+### Deploy it. Run it
 
 ```bash
 ./run.sh
 
-cat functions/audio-splitter/payload.json | fn invoke ffmpeg audio-splitter | fn invoke ffmpeg audio-processor | fn invoke ffmpeg amplification-threshold | fn invoke ffmpeg csv-converter | fn invoke ffmpeg peak-frequency-plotter | fn invoke ffmpeg timecode-statistics
+cat functions/audio-splitter/payload.json | \
+  fn invoke ffmpeg audio-splitter | \
+  fn invoke ffmpeg audio-processor | \
+  fn invoke ffmpeg amplification-threshold | \
+  fn invoke ffmpeg csv-converter | \
+  fn invoke ffmpeg peak-frequency-plotter | \
+  fn invoke ffmpeg timecode-statistics
 ```
 
-Acknowledgement
-===============
+## Acknowledgement
+
 
 Every bits of code belong to me. But that doesn't really mean that you can't take this code and experiment.
 For this particular demo i've done some additional work prior working on this one.
@@ -67,9 +69,9 @@ For this particular demo i've done some additional work prior working on this on
 3 multistage docker images:
 
  - build-stage (ready to build some C/CPP code)
- - golang (ready for cgo, go apps compiling)
+ - golang (CGo/Go, go apps compiling)
  - runtime (ready to run your binary from one of the stages above)
- 
+
 All these images were designed and built for the one purpose - make FFMPEG easy to use on, probably, the most stable OS for Docker - Debian.
 In ever layer you have an access to `ffmpeg`, `ffprobe` tools as well as all plugins and codecs designed for (or used with) FFMPEG.
 That's why the whole idea of this demo became possible.
