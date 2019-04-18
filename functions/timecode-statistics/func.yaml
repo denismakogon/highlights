@@ -1,9 +1,8 @@
 schema_version: 20180708
 name: timecode-statistics
-version: 0.0.5
-runtime: python3.7
-entrypoint: python3 func.py
-format: http-stream
+version: 0.0.11
+runtime: python3.7.1
+entrypoint: /python/bin/fdk /function/func.py handler
 memory: 2000
 timeout: 300
 triggers:

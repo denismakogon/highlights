@@ -1,5 +1,5 @@
 import fdk
-import ujson
+import json
 import pandas as pd
 import numpy as np
 import sys
@@ -126,10 +126,9 @@ def from_file(path_or_url: str, stat_uuid: str):
     )
 
 
-# todo: add peak filtering
 def handler(ctx, data=None, loop=None):
     if data is not None:
-        body = ujson.loads(data)
+        body = json.loads(data.getvalue())
         stat_uuid = body.get("stat_uuid")
         html_file = download_s3_file(stat_uuid)
 
@@ -145,7 +144,3 @@ def handler(ctx, data=None, loop=None):
         return body
 
     return data
-
-
-if __name__ == "__main__":
-    fdk.handle(handler)

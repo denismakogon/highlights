@@ -13,9 +13,8 @@ export S3_URL="s3://${STORAGE_ACCESS_KEY}:${STORAGE_SECRET_KEY}@${DOCKER_LOCALHO
 pushd ../scripts
     ./start.sh
     ./test.sh
+    ./deploy.sh
 popd
-
-fn --verbose deploy --all app.yml --local --build-arg S3_URL=${S3_URL}
 
 pushd ../scripts
     ./configure.sh

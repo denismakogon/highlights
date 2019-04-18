@@ -1,8 +1,8 @@
 schema_version: 20180708
 name: peak-frequency-plotter
-version: 0.0.1
-runtime: python3.7
-entrypoint: python3 func.py
+version: 0.0.5
+runtime: python3.7.1
+entrypoint: /python/bin/fdk /function/func.py handler
 memory: 2000
 timeout: 300
 triggers:

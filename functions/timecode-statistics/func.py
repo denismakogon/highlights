@@ -1,5 +1,5 @@
 import fdk
-import ujson
+import json
 import pandas as pd
 import numpy as np
 import sys
@@ -154,14 +154,10 @@ def from_file(path_or_url: str, amplification_peak: np.float64, stat_uuid: str):
 def handler(ctx, data=None, loop=None):
     if data is not None:
         print(str(data), file=sys.stderr, flush=True)
-        body = ujson.loads(data)
+        body = json.loads(data.getvalue())
         peak = np.float64(body.get("threshold_value"))
         stat_uuid = body.get("stat_uuid")
         download_s3_file(stat_uuid)
         return from_file("/tmp/{0}.csv".format(
             stat_uuid), peak, stat_uuid)
     return {}
-
-
-if __name__ == "__main__":
-    fdk.handle(handler)

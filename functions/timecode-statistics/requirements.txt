@@ -1,4 +1,4 @@
-fdk==0.0.35
+fdk
 numpy==1.15.3
 pandas==0.23.4
 boto3
